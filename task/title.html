@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+    <style type="text/css">
+        body,html{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        #t {
+            width: 100%;
+            height: 50px;
+            background-color: #4596D4;
+            line-height: 50px;
+            min-width: 1200px;
+        }
+        .myli{
+            display: inline-block;
+            color: white;
+            font-size: 14px;
+            margin-left: 40px;
+            cursor: pointer;
+        }
+        .myli:hover{
+            color: black;
+        }
+        .myli:nth-child(1){
+          font-size: 25px;
+            margin-left: -30px;
+        }
+        .myli:last-child{
+            margin-left: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<ul id="t"></ul>
+
+    <script type="text/babel">
+        const text = ['廖雪峰的官方网站','编程','读书','Java教程','JavaScript教程','Python教程','Git教程','问答','赞助','登录'];
+        ReactDOM.render(
+                <ul>{
+                    text.map(function(name) {
+                        return <li className="myli">{name}</li>
+                    })
+                }
+                </ul>,
+                document.getElementById('t')
+        )
+    </script>
+
+
+
+
+</body>
+</html>
+<!--npm install --save react-->
+<!--npm install --save react-dom-->
+<!--npm install --save babel-standalone-->
+<!--npm install --save babel-->
