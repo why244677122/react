@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+    <style type="text/css">
+        body,html{
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+            width: 100%;
+        }
+        .title {
+            height: 80px;
+            width: 950px;
+            margin: auto;
+        }
+        .title-img{
+            width: 175px;
+            height:70px;
+            cursor: pointer;
+        }
+        .title-span{
+            height: 35px;
+            width: 120px;
+            text-align: center;
+            line-height: 35px;
+            background-color: #F2F9FF;
+            display: inline-block;
+            color: blue;
+            float: right;
+            margin-right:30px;
+            margin-top: 25px;
+            cursor: pointer;
+        }
+        .title-span1{
+            float: right;
+            height: 40px;
+            width: 120px;
+            text-align: center;
+            line-height: 40px;
+            display: inline-block;
+            margin-right: 20px;
+            margin-top: 25px;
+            cursor: pointer;
+        }
+
+        /*蓝色背景里的内容*/
+        #blue {
+            width: 100%;
+            height: 460px;
+            background-color: #4587F3;
+        }
+
+        #b {
+            width: 950px;
+            margin: auto;
+            overflow: hidden;
+        }
+        /*<!--包住左面图-->*/
+        #b-img{
+            width: 450px;
+            float: left;
+            position: absolute;
+            overflow: hidden;
+        }
+        #b-img>img{
+            margin-top: 12px;
+            animation: fadeInUp 1s;
+        }
+        /*<!--包住右边内容-->*/
+        #b-right {
+            width: 450px;
+            height: 460px;
+            float: right;
+            animation: fadeInRight 1s;
+        }
+
+
+        #b-text{
+            width: 450px;
+            height: 100px;
+            margin-top: 100px;
+
+        }
+        #b-text>span:nth-child(1){
+            color: white;
+            font-size: 40px;
+        }
+        #b-text>span:nth-child(2){
+            color: #7FB8F8;
+            display: inline-block;
+        }
+
+        #b-tu {
+            width: 440px;
+            margin-top: 50px;
+            overflow: hidden;
+        }
+
+        .b-tu-div {
+            width: 195px;
+            height: 55px;
+            background-color: white;
+            float: right;
+            text-align: center;
+            line-height: 55px;
+            margin-right: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .b-tu-div>img:nth-child(1){
+            position: absolute;
+            width: 32px;
+            height:32px;
+            margin-left: -40px;
+            margin-top: 10px;
+        }
+        .b-tu-div>span:nth-child(2){
+            font-size: 20px;
+            margin-left: 20px;
+        }
+
+        .b-tu-div1 {
+            width: 195px;
+            height: 55px;
+            background-color: white;
+            display: inline-block;
+            float: right;
+            margin-top: -60px;
+            margin-right: 20px;
+            text-align: center;
+            line-height: 55px;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+        .b-tu-div1>img:nth-child(1){
+            position: absolute;
+            width: 32px;
+            height:32px;
+            margin-left: -20px;
+            margin-top: 10px;
+        }
+        .b-tu-div1>span:nth-child(2){
+            font-size: 20px;
+            margin-left: 20px;
+        }
+        .b-tu-div:hover{
+            display: block;
+            background-color:lightskyblue;
+        }
+
+        .b-tu-div1:hover{
+            background-color: lightskyblue;
+        }
+        .b-tu-div1:hover #yinc{
+           display: block;
+        }
+
+        #yinc>div:nth-child(1):hover{
+            background-color: lightskyblue;
+        }
+        #yinc {
+            position: absolute;
+            margin-top: -4px;
+            width: 195px;
+            height: 55px;
+            background-color: ghostwhite;
+            display: none;
+            font-size: 20px;
+        }
+
+        #yinc>div:nth-child(2):hover{
+            background-color: lightskyblue;
+        }
+        #yinc>div:nth-child(2){
+              width: 195px;
+              height: 55px;
+              background-color: ghostwhite;
+          }
+        #yinc>div:nth-child(3):hover{
+            background-color: lightskyblue;
+        }
+        #yinc>div:nth-child(3){
+            width: 195px;
+            height: 55px;
+            background-color: ghostwhite;
+        }
+        #box{
+            background-color: #F9F9F9;
+        }
+
+        #tou {
+            width: 950px;
+            height: 100px;
+            margin: auto;
+            overflow: hidden;
+            font-size: 25px;
+            line-height: 100px;
+        }
+        .tou-span{
+            float: left;
+        }
+        .tou-span1{
+            float: right;
+            color: gainsboro;
+        }
+        .a{
+            width: 960px;
+            margin: auto;
+        }
+        .x-div{
+            width: 300px;
+            height: 380px;
+            background-color: white;
+            display: inline-block;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+        .x-img{
+            width: 260px;
+            height: 260px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        .x-p{
+            margin-left: 20px;
+            width: 260px;
+            height: 50px;
+        }
+        .d{
+            width: 960px;
+            height: 60px;
+            background-color: #E9EEF2;
+            margin-top: 20px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 20px;
+            color: #2A507E;
+            cursor: pointer;
+        }
+        .dd{
+            width: 100%;
+            height: 270px;
+            background-color: #E5E5E5;
+            margin-top: 30px;
+        }
+        .dd-text{
+            width: 950px;
+            height: 50px;
+            margin: auto;
+        }
+        .dd-p{
+            width: 600px;
+            font-size: 15px;
+            line-height: 50px;
+            float: left;
+        }
+        .dd-img{
+            float: right;
+            margin-top: 55px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="animate.css">
+</head>
+<body>
+<div id="wrap">
+    <div id="title"></div>
+    <!--蓝色背景-->
+    <div id="blue">
+
+        <div id="b">
+            <!--包住左面图-->
+            <div id="b-img">
+                <img src="img/31.png" alt="">
+            </div>
+            <!--包住右边内容-->
+            <div id="b-right">
+                <div id="b-text">
+                    <span>每天三次,每次七分钟</span>
+                    <span>在中国，资讯类移动应用的人均阅读时长是 5 分钟，而在知乎日报，这个数字是 21。</span>
+                </div>
+                <div id="b-tu">
+                    <img src="img/32.png" height="135" width="135"/>
+                    <div class="b-tu-div">
+                        <img src="img/苹果手机验证.png"/>
+                        <span>iOS 版</span>
+                    </div>
+                    <div class="b-tu-div1">
+                        <img src="img/安卓手机.png" height="16" width="16"/>
+                        <span>Android 版</span>
+                        <div id="yinc">
+                            <div>豌豆荚</div>
+                            <div>91 市场</div>
+                            <div>360 市场</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--包下面所有内容-->
+    <div id="box">
+        <!--浏览内容栏-->
+        <div id="tou">
+            <span class="tou-span">浏览内容</span>
+            <span class="tou-span1">最新内容</span>
+        </div>
+        <div id="img"></div>
+        <div id="footer"></div>
+    </div>
+
+
+
+
+</div>
+
+
+
+    <script type="text/babel">
+        class Title extends React.Component{
+            //渲染
+            render(){
+                return(
+                        <div className="title">
+                            <img src="img/30.jpg" className="title-img"/>
+                            <span className="title-span1">浏览内容</span>
+                            <span className="title-span">APP   下载</span>
+                        </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+                <Title/>,document.getElementById('title')
+        );
+
+//        下面图片部分
+
+        class Img extends React.Component{
+
+            //渲染
+            render(){
+                var arr = [];
+                var imgArr = [];
+                for (var i = 0; i < 30; i++){
+                    imgArr.push('img/'+i+'.jpg')
+                }
+                var textArray = ['给女生的几招穿衣搭配技巧，下次出门不用那么纠结了 ' ,'大误 · 猫的守墓人 ' ,'陕西车祸死亡 36 人，看了看事故路段，发现有些问题 ' ,'大风刮过要想告赢唐七抄袭，该怎么办？ ' ,'「我爱你，但你必须听我的」 ' ,'再见了，暴雪电影部，我要去北京做中国动画了 ' ,'铁甲、机器人，为什么这类动画和电影总是让我们着迷？ ' ,'我们聊聊 Apple 颜色设计的历程，再说 iPhone 8 的悬念 ' ,'被你当做「性启蒙读物」的《金瓶梅》，历史地位可是相当高 ' ,'你最喜欢的商场都长什么样？ ' ,'瞎扯 · 如何正确地吐槽 ' ,'小事 · 爸爸去世之后 ' ,'摇滚青年陈佩斯，奇怪吗？其实一点都不奇怪 ' ,'一盘酸辣爽口又劲道的凉面，夏天恨不得每天都拌来吃 ' ,'小时候去新华书店花 10 块钱买的游戏光盘，竟然是「伪正版」 ' ,'环游一次世界要花多少钱？73 万，这是我们帮你算出的账 ' ,'遣返「格斗孤儿」回凉山，等待他们的只有毒品、艾滋和贫穷 ' ,'这个玩钢镚儿小游戏，玩着玩着就解释了一个社会问题 ' ,'国内最常见的普通楼房，原来是「社会主义审美」 ' ,'别再问年轻人凭什么不加班了，加班就等于努力工作吗？ ' ,'为什么各种宗教都有那么多禁忌？ ' ,'大误 · 可能是最适合中国人减肥的文章 ' ,'彩虹有没有倒影？ ' ,'多少级的地震可以撼动全球？ ' ,'朋友圈一篇「癌症最强科普文」传得够广，但别全信了 ' ,'终于可以回答「生吃带鱼是什么样的感受」了 ' ,'《权力的游戏》中的灰鳞病现实中真的存在吗？ ' ,'「在职场中交不到朋友才正常」，这话其实没错 ' ,'「香港爆发史无前例大流感，超过 SARS」……等等，别慌 ' ,'瞎扯 · 如何正确地吐槽 '];
+                for (var i = 0; i < imgArr.length; i++){
+                    arr.push(
+                            <div className="x-div">
+                                <img src={imgArr[i]} className="x-img"/>
+                                <p className="x-p">{textArray[i]}</p>
+                            </div>
+                    )
+                }
+
+                return(
+                        <div className="a">
+                            {arr}
+                            <div className="d">更多精彩内容可在知乎日报应用中查看</div>
+                        </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+                <Img/>,document.getElementById('img')
+        );
+
+
+//        尾部
+        class Footer extends React.Component{
+            //渲染
+            render(){
+                return(
+                        <div className="dd">
+                            <div className="dd-text">
+                                <p className="dd-p">知乎日报是一款拥有千万用户的资讯类客户端，每日提供来自知乎社区的精选问答，还有国内一流媒体的专栏特稿。
+                                    主题日报包括动漫、设计、大公司、游戏、财经、电影、电子音乐、互联网安全等丰富内容，为业内人和资深爱好
+                                    者推荐各领域最精彩文章，满足高质量阅读需求。
+                                    在知乎日报，告别浮躁，重获阅读的愉悦。
+                                    © 2017 知乎</p>
+                                    <img src="img/36.png" alt=""className="dd-img"/>
+                            </div>
+
+                        </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+                <Footer/>,document.getElementById('footer')
+        );
+    </script>
+</body>
+</html>
