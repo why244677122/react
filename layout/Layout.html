@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+    <style type="text/css">
+        .head {
+            width: 500px;
+            height: 50px;
+            background-color: #4C9CB7;
+        }
+
+        .head > img {
+            width: 30px;
+            height: 30px;
+            float: right;
+            margin: 10px 5px;
+            background-color: #38859D;
+            cursor: pointer;
+        }
+
+        .head > img:hover {
+            background-color: #C94C92;
+        }
+
+        .root1{
+            width: 480px;
+            margin-left: 10px;
+            overflow: hidden;
+        }
+        .img>img{
+            width: 230px;
+            height: 230px;
+            margin-left: 5px;
+        }
+        .root2{
+            width: 480px;
+            overflow: hidden;
+        }
+        .a{
+            width: 230px;
+            height: 230px;
+            margin-top: 15px;
+        }
+        .a>div>img{
+            width: 230px;
+            height: 230px;
+
+        }
+       .a2{
+           float: right;
+           width: 200px;
+       }
+        .x{
+            width: 500px;
+            border: 1px solid black;
+            margin-top: 12px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="root"></div>
+    <div id="root1"></div>
+    <div id="root2"></div>
+    <div id="root3"></div>
+</div>
+
+<script type="text/babel">
+
+
+    var arr = [
+            'https://tutorialzine.com/media/2016/03/css-variables.jpg',
+            'https://tutorialzine.com/media/2016/02/great-looking-pricing-tables.jpg',
+            'https://tutorialzine.com/media/2016/02/interesting-resources-february.jpg',
+            'https://tutorialzine.com/media/2016/02/quick-tip-responsive-headers.png',
+            'https://tutorialzine.com/media/2016/01/learn-sql-20-minutes.png',
+            'https://tutorialzine.com/media/2015/12/creating-your-first-desktop-app-with-electron.png']
+    //九宫格
+    class List extends React.Component{
+
+        render(){
+            var arrImg = [];
+            for(var i = 0; i < arr.length; i++) {
+                arrImg.push(<img src={arr[i]}/>)
+            }
+
+            return(
+                    <div className="root1">
+                        <div className="img">
+                            {arrImg}
+                        </div>
+                    </div>
+
+            )
+        }
+    }
+
+
+    //列表
+    class Layout extends React.Component{
+        render(){
+            var arrImgs = [];
+            for(var i = 0; i < arr.length; i++) {
+                arrImgs.push(
+                        <div className="root2">
+                            <div className="a2"><span className="a2-span">Baby, you are my world</span></div>
+                            <div className="a">
+                                <div><img src={arr[i]}/></div>
+                            </div>
+                            <div className="x"></div>
+                        </div>
+                )
+
+            }
+            return(
+                   <div className="Layout-img">
+                       {arrImgs}
+                   </div>
+            )
+        }
+    }
+
+
+
+    class LayoutControl extends React.Component{
+        constructor(props){
+            super(props)
+            this.state = {
+                Change:false
+            }
+        }
+        list = () => {
+            this.setState({
+                Change:true
+            })
+        }
+        layout = () => {
+            this.setState({
+                Change:false
+            })
+        }
+
+
+        render(){
+            let c = null
+            const state = this.state.Change
+            if (!state){
+                c = <List/>
+            }else {
+                c = <Layout/>
+            }
+            return(
+                    <div className="head">
+                        <img onClick={this.list} src="素材/list.png" height="64" width="64"/>
+                        <img onClick={this.layout} src="素材/grade.png" height="64" width="64"/>
+                        <div>
+                            {c}
+                        </div>
+                    </div>
+            )
+        }
+    }
+    ReactDOM.render(<LayoutControl/>, document.getElementById('root3'))
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
